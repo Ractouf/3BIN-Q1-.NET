@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LINQ_DataContext", "LINQ_DataContext.csproj", "{BF9E05C2-280B-41CE-9864-19B2C3211752}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LINQ_DataContext", "LINQ_DataContext.csproj", "{BF9E05C2-280B-41CE-9864-19B2C3211752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "query", "..\query\query.csproj", "{FD34444A-1A4F-41EE-9DDB-A2449E9AFCDF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BF9E05C2-280B-41CE-9864-19B2C3211752}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF9E05C2-280B-41CE-9864-19B2C3211752}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF9E05C2-280B-41CE-9864-19B2C3211752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD34444A-1A4F-41EE-9DDB-A2449E9AFCDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD34444A-1A4F-41EE-9DDB-A2449E9AFCDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD34444A-1A4F-41EE-9DDB-A2449E9AFCDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD34444A-1A4F-41EE-9DDB-A2449E9AFCDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
