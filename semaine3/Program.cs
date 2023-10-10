@@ -89,10 +89,11 @@ foreach (Employee employee in employees) {
 }*/
 
 //ex 7
-var territories = (from e in context.Employees 
+/*var territories = (from e in context.Employees 
                                     where e.LastName.Equals("Suyama") 
                                     select e.ReportsToNavigation.Territories).SingleOrDefault();
 
 foreach (Territory territory in territories) {
     Console.WriteLine(territory.TerritoryDescription);
-}
+}*/
+
