@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using semaine3.Models;
+﻿using semaine3.Models;
 
 NorthwindContext context = new NorthwindContext();
 
@@ -97,3 +96,70 @@ foreach (Territory territory in territories) {
     Console.WriteLine(territory.TerritoryDescription);
 }*/
 
+// ex Update
+/*foreach (Customer customer in (from c in context.Customers select c))
+{
+    customer.ContactName = customer.ContactName.ToUpper();
+}
+
+context.SaveChanges();
+
+foreach (Customer customer in (from c in context.Customers select c))
+{ 
+    Console.WriteLine(customer.ContactName);
+}*/
+
+// ex Insert
+/*Console.WriteLine("Veuillez entrer le nom d'une catégorie a ajouter");
+String categoryName = Console.ReadLine();
+
+Category category = new Category();
+category.CategoryName = categoryName;
+
+context.Categories.Add(category);
+context.SaveChanges();
+
+Console.WriteLine((from c in context.Categories where c.CategoryName == categoryName select c).SingleOrDefault().CategoryName);*/
+
+// ex Delete 1-2
+/*Category damien = (from c in context.Categories
+                     where c.CategoryName == "DAMIEN"
+                     select c).SingleOrDefault();
+
+context.Categories.Remove(damien);
+context.SaveChanges();
+
+IQueryable<Category> verify = from c in context.Categories
+                              where c.CategoryName == "DAMIEN"
+                              select c;
+
+if (verify.IsNullOrEmpty()) Console.WriteLine("Category was successfully removed");
+else Console.WriteLine("Category was not removed");*/
+
+// ex Delete 3-4
+/*Console.WriteLine("Veuillez entrer l'ID de l'employé a supprimer: ");
+int removeID = Int32.Parse(Console.ReadLine());
+Employee removeEmployee = (from e in context.Employees where e.EmployeeId == removeID select e).SingleOrDefault();
+
+Console.WriteLine("Veuillez entrer l'ID de l'employé qui récupère les Orders: ");
+int addID = Int32.Parse(Console.ReadLine());
+Employee addEmployee = (from e in context.Employees where e.EmployeeId == addID select e).SingleOrDefault();
+
+IQueryable<Order> orders = from o in context.Orders
+                           where o.EmployeeId == removeID
+                           select o;
+
+foreach (Order order in orders)
+{
+    order.EmployeeId = addID;
+    order.Employee = addEmployee;
+}
+
+context.Remove(removeEmployee);
+// does not work because you need to delete cascade but I could not bother to do it
+context.SaveChanges();
+
+foreach (Order order in (from o in context.Orders select o))
+{ 
+    Console.WriteLine(order.EmployeeId);
+}*/
