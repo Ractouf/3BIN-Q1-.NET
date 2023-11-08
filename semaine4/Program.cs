@@ -1,10 +1,8 @@
 ﻿using semaine4.Models;
-using semaine4.Repository;
+using semaine4.UnitOfWork;
 
 SchoolContext context = new SchoolContext();
-
-BaseRepositorySQL<Section> sectionRepo = new BaseRepositorySQL<Section>(context);
-BaseRepositorySQL<Student> studentRepo = new BaseRepositorySQL<Student>(context);
+IUnitOfWork unitOfWork = new UnitOfWorkSQLServer(context);
 
 int sections = 0;
 while (sections < 2) 
@@ -17,7 +15,7 @@ while (sections < 2)
         Name = name
     };
 
-    bool result = sectionRepo.Save(section, section => section.Name.Equals(name));
+    bool result = unitOfWork.SectionRepository.Save(section, section => section.Name.Equals(name));
 
     if (!result) 
     {
@@ -41,7 +39,7 @@ while (students < 3)
     Console.WriteLine("Veuillez entrer la section de l'étudiant");
     String sectionName = Console.ReadLine();
 
-    Section section = (from s in sectionRepo.GetAll()
+    Section section = (from s in unitOfWork.SectionRepository.GetAll()
                       where s.Name == sectionName
                       select s).SingleOrDefault();
 
@@ -59,7 +57,7 @@ while (students < 3)
         Section = section
     };
 
-    bool result = studentRepo.Save(student, student => student.Name.Equals(lastname) || student.Firstname.Equals(firstname));
+    bool result = unitOfWork.StudentRepository.Save(student, student => student.Name.Equals(lastname) || student.Firstname.Equals(firstname));
 
     if (!result)
     {
