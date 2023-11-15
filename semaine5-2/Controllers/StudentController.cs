@@ -4,7 +4,7 @@ using semaine5_2.Models;
 namespace semaine5_2.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/api/[controller]")]
     public class StudentController : ControllerBase
     {
         private static List<Student> _students = new List<Student>()
@@ -21,13 +21,19 @@ namespace semaine5_2.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "students")]
+        [HttpGet]
         public IEnumerable<Student> Get()
         {
             return _students;
         }
 
-        [HttpPost(Name = "students")]
+        [HttpGet("{id}")]
+        public Student GetById(int id)
+        {
+            return _students.Find(s => s.Id == id);
+        }
+
+        [HttpPost]
         public IEnumerable<Student> Add(Student student)
         {
             _students.Add(student);
