@@ -3,7 +3,7 @@ using semaine6.Repository;
 
 namespace semaine6.UnitOfWork
 {
-    class UnitOfWorkSQLServer : IUnitOfWork
+    public class UnitOfWorkSQLServer : IUnitOfWork
     {
         private readonly NorthwindContext _context;
 

@@ -16,7 +16,7 @@ namespace semaine6.Repository
         public async Task DeleteAsync(TEntity entity)
         {
             _dbContext.Set<TEntity>().Remove(entity);
-            await _dbContext.SaveChangesAsync();
+            await SaveChangesAsync();
         }
 
         public async Task<IList<TEntity>> GetAllAsync()
@@ -33,21 +33,33 @@ namespace semaine6.Repository
         {
             await _dbContext.Set<TEntity>().AddAsync(entity);
 
-            SaveChangesAsync();
+            await SaveChangesAsync();
         }
 
         public async Task<bool?> SaveAsync(TEntity entity, Expression<Func<TEntity, bool>> predicate)
         {
-            IList<TEntity> entList = await (SearchForAsync(predicate));
-            TEntity ent = entList.FirstOrDefault();
+            TEntity? ent = (await SearchForAsync(predicate)).FirstOrDefault();
 
             if (ent == null)
             {
                 await InsertAsync(entity);
                 return true;
             }
+            else
+            {
+                _dbContext.Set<TEntity>().Update(entity);
+                await SaveChangesAsync();
+            }
+
+            return true;
+
+        }
+
+        public async Task<bool?> SaveAsync(TEntity entity)
+        {
+            _dbContext.Set<TEntity>().Update(entity);
             await SaveChangesAsync();
-            return false;
+            return true;
         }
 
         public async Task<IList<TEntity>> SearchForAsync(Expression<Func<TEntity, bool>> predicate)
