@@ -67,7 +67,7 @@ namespace exam_janvier_2023.ViewModels
                 productsCountByCountry.Add(new ProductCountByCountry(country.Country, country.ProductCount));
             }
 
-            return productsCountByCountry.ToList();
+            return productsCountByCountry;
         }
 
         public ProductModel SelectedProduct
