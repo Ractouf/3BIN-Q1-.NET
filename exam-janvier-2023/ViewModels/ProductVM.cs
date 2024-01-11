@@ -30,7 +30,6 @@ namespace exam_janvier_2023.ViewModels
         public ObservableCollection<ProductModel> ProductList
         {
             get { return _productList = _productList ?? loadProducts(); }
-            set { _productList = value; }
         }
 
         public ObservableCollection<ProductModel> loadProducts()
@@ -97,6 +96,7 @@ namespace exam_janvier_2023.ViewModels
                 existingProduct.Discontinued = true;
                 dc.SaveChanges();
                 ProductList.Remove(SelectedProduct);
+                OnPropertyChanged("ProductList");
 
                 MessageBox.Show("Le produit a été abandonné");
             }

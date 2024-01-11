@@ -16,11 +16,6 @@ namespace exam_janvier_2023.ViewModels
             this._product = product;
         }
 
-        public Product Product
-        {
-            get { return _product; }
-        }
-
         public int ProductId
         {
             get { return _product.ProductId; }
